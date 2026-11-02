@@ -1,0 +1,58 @@
+{
+	"name": "Westfront",
+	"size_m": 3000.0,
+	"factions": {
+		"legion": {"name": "The Legion", "color": "d9903f"},
+		"crown": {"name": "The Crown", "color": "7a9cc6"}
+	},
+	"places": [
+		{"id": "westgate", "name": "Westgate", "kind": "town", "pos": [350, 1500], "owner": "legion", "fortification": 0.4,
+			"stock": {"scrap": 100, "bmats": 200, "rifles": 120, "ammo": 300, "shells": 60, "medkits": 60}},
+		{"id": "halle", "name": "Halle", "kind": "town", "pos": [900, 800], "owner": "legion", "fortification": 0.2,
+			"stock": {"bmats": 60, "rifles": 20, "ammo": 120, "medkits": 20}},
+		{"id": "ironford", "name": "Ironford", "kind": "town", "pos": [1500, 1500], "fortification": 0.2,
+			"stock": {"bmats": 40, "ammo": 60, "medkits": 10}},
+		{"id": "marrow", "name": "Marrow", "kind": "town", "pos": [2100, 2200], "owner": "crown", "fortification": 0.2,
+			"stock": {"bmats": 60, "rifles": 20, "ammo": 120, "medkits": 20}},
+		{"id": "kingsreach", "name": "Kingsreach", "kind": "town", "pos": [2650, 1500], "owner": "crown", "fortification": 0.4,
+			"stock": {"scrap": 100, "bmats": 200, "rifles": 120, "ammo": 300, "shells": 60, "medkits": 60}},
+
+		{"id": "cray_depot", "name": "Cray Depot", "kind": "depot", "pos": [900, 2200], "owner": "legion",
+			"stock": {"bmats": 40, "ammo": 80, "medkits": 10}},
+		{"id": "ashby_depot", "name": "Ashby Depot", "kind": "depot", "pos": [2100, 800], "owner": "crown",
+			"stock": {"bmats": 40, "ammo": 80, "medkits": 10}},
+
+		{"id": "west_quarry", "name": "West Quarry", "kind": "quarry", "pos": [150, 1000]},
+		{"id": "east_quarry", "name": "East Quarry", "kind": "quarry", "pos": [2850, 2000]},
+		{"id": "halle_scrap", "name": "Halle Scrapfield", "kind": "scrap", "pos": [550, 450]},
+		{"id": "cray_scrap", "name": "Cray Scrapfield", "kind": "scrap", "pos": [450, 2550]},
+		{"id": "marrow_scrap", "name": "Marrow Scrapfield", "kind": "scrap", "pos": [2450, 2550]},
+		{"id": "ashby_scrap", "name": "Ashby Scrapfield", "kind": "scrap", "pos": [2550, 450]}
+	],
+	"roads": [
+		["westgate", "halle"],
+		["halle", "ironford"],
+		["ironford", "cray_depot"],
+		["cray_depot", "westgate"],
+
+		["ironford", "ashby_depot"],
+		["ashby_depot", "kingsreach"],
+		["kingsreach", "marrow"],
+		["marrow", "ironford"],
+
+		["westgate", "west_quarry"],
+		["kingsreach", "east_quarry"],
+		["halle", "halle_scrap"],
+		["cray_depot", "cray_scrap"],
+		["marrow", "marrow_scrap"],
+		["ashby_depot", "ashby_scrap"]
+	],
+	"squads": [
+		{"faction": "legion", "at": "westgate", "count": 3},
+		{"faction": "legion", "at": "halle", "count": 2},
+		{"faction": "legion", "at": "cray_depot", "count": 1},
+		{"faction": "crown", "at": "kingsreach", "count": 3},
+		{"faction": "crown", "at": "marrow", "count": 2},
+		{"faction": "crown", "at": "ashby_depot", "count": 1}
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"squad_size": 8,
+	"squad_speed_mps": 2.0,
+	"squad_ammo_capacity": 40.0,
+	"ammo_burn_per_soldier_per_sec": 0.02,
+	"resupply_per_sec": 2.0,
+	"engage_range_m": 120.0,
+	"kill_rate_per_shooter_per_sec": 0.0167,
+	"low_supply_firepower": 0.5,
+	"fortification_protection": 0.6,
+	"fortification_radius_m": 150.0,
+	"capture_time_s": 60.0,
+	"commander_interval_s": 30.0
+}

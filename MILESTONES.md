@@ -15,8 +15,8 @@ Each item = roughly one Claude Code session. Each **M** ends playable. Check ite
 - [x] Dummy targets + gun sound
 
 ## M2 — Sim layer exists  (playable: watch the war on a map screen)
-- [ ] `region.gd` loads `data/region_westfront.json` (5 towns, roads, depots, scrap fields)
-- [ ] `stockpile.gd`, `squad.gd` with position-on-road travel
+- [x] `region.gd` loads `data/region_westfront.json` (5 towns, roads, depots, scrap fields)
+- [x] `stockpile.gd`, `squad.gd` with position-on-road travel
 - [ ] `resolver.gd` abstract combat (supply + fortification weighted)
 - [ ] `sim_clock.gd` with 1x / 4x / 16x speed
 - [ ] Map UI: towns colored by owner, squads as dots, stock numbers
