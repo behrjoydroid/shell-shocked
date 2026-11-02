@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://world/soldier/soldier.tscn" id="1_soldier"]
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="2_hud"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Soldier" parent="." instance=ExtResource("1_soldier")]
 position = Vector2(640, 360)
+
+[node name="Hud" parent="." node_paths=PackedStringArray("soldier") instance=ExtResource("2_hud")]
+soldier = NodePath("../Soldier")
