@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://world/soldier/soldier.tscn" id="1_soldier"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Soldier" parent="." instance=ExtResource("1_soldier")]
+position = Vector2(640, 360)

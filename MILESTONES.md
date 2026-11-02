@@ -4,7 +4,7 @@ Each item = roughly one Claude Code session. Each **M** ends playable. Check ite
 
 ## M0 — Repo & skeleton
 - [x] `git init`, GitHub remote, first commit of these three docs
-- [ ] Godot project, main scene, placeholder player circle that moves
+- [x] Godot project, main scene, placeholder player circle that moves
 - [ ] `tests/run.gd` headless runner that passes an empty test
 
 ## M1 — Soldier feels good  (playable: shooting range)
