@@ -24,6 +24,7 @@ func _init(data: Dictionary) -> void:
 		_roads[place.id] = {}
 		if place.owner != "" and not factions.has(place.owner):
 			push_error("Place '%s' has unknown owner '%s'" % [place.id, place.owner])
+			place.owner = ""
 	for road: Array in data.roads:
 		_add_road(road[0], road[1])
 

@@ -6,6 +6,11 @@ const Region := preload("res://sim/region.gd")
 const Squad := preload("res://sim/squad.gd")
 const Commander := preload("res://sim/commander.gd")
 const Resolver := preload("res://sim/resolver.gd")
+const REQUIRED_STATS: Array[String] = [
+	"squad_size", "squad_speed_mps", "squad_ammo_capacity", "ammo_burn_per_soldier_per_sec",
+	"resupply_per_sec", "engage_range_m", "kill_rate_per_shooter_per_sec", "low_supply_firepower",
+	"fortification_protection", "fortification_radius_m", "capture_time_s", "commander_interval_s",
+]
 
 var region: Region
 var stats: Dictionary
@@ -25,12 +30,21 @@ var _orders_left := 0.0
 func _init(region_data: Dictionary, sim_stats: Dictionary, war_seed: int) -> void:
 	_rng.seed = war_seed
 	stats = sim_stats
+	# Checked up front so a typo gives one clear error, not one on every tick. With
+	# no region, whoever made this war knows it can't run.
+	var complete := true
+	for key in REQUIRED_STATS:
+		if not stats.has(key):
+			push_error("data/sim.json is missing '%s'" % key)
+			complete = false
+	if not complete:
+		return
 	region = Region.new(region_data)
 	for faction: String in region.factions:
 		commanders.append(Commander.new(faction))
 	for group: Dictionary in region_data.squads:
-		if not region.places.has(group.at):
-			push_error("Squads start at '%s', which doesn't exist" % group.at)
+		if not region.places.has(group.at) or not region.factions.has(group.faction):
+			push_error("Squads of '%s' start at '%s': one of those doesn't exist" % [group.faction, group.at])
 			continue
 		for i in int(group.count):
 			add_squad(group.faction, group.at)

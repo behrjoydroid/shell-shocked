@@ -50,6 +50,14 @@ offset_top = 634.0
 offset_right = 374.0
 offset_bottom = 660.0
 
+[node name="MapHint" type="Label" parent="."]
+offset_left = 1136.0
+offset_top = 670.0
+offset_right = 1256.0
+offset_bottom = 696.0
+text = "M: war map"
+horizontal_alignment = 2
+
 [node name="StatusLabel" type="Label" parent="."]
 offset_top = 300.0
 offset_right = 1280.0

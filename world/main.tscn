@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="PackedScene" path="res://world/soldier/soldier.tscn" id="1_soldier"]
 [ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://world/structures/dummy.tscn" id="3_dummy"]
 [ext_resource type="PackedScene" path="res://world/structures/firing_dummy.tscn" id="4_firing_dummy"]
 [ext_resource type="PackedScene" path="res://world/structures/wall.tscn" id="5_wall"]
+[ext_resource type="Script" path="res://world/sim_bridge.gd" id="6_sim_bridge"]
+[ext_resource type="PackedScene" path="res://ui/map/map.tscn" id="7_map"]
 
 [node name="Main" type="Node2D"]
+
+[node name="SimBridge" type="Node" parent="."]
+script = ExtResource("6_sim_bridge")
 
 [node name="SpawnPoint" type="Marker2D" parent="." groups=["spawn_points"]]
 position = Vector2(640, 360)
@@ -38,3 +43,9 @@ size = Vector2(120, 20)
 
 [node name="Hud" parent="." node_paths=PackedStringArray("soldier") instance=ExtResource("2_hud")]
 soldier = NodePath("../Soldier")
+
+[node name="MapLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Map" parent="MapLayer" node_paths=PackedStringArray("bridge") instance=ExtResource("7_map")]
+bridge = NodePath("../../SimBridge")
