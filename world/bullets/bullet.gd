@@ -25,9 +25,16 @@ func launch(shooter: CollisionObject2D, damage: float, speed: float, max_range: 
 func _physics_process(delta: float) -> void:
 	var step := minf(_speed * delta, _range_left)
 	var next := global_position + Vector2.from_angle(rotation) * step
-	var query := PhysicsRayQueryParameters2D.create(global_position, next, ALL_LAYERS, _exclude)
-	var hit := get_world_2d().direct_space_state.intersect_ray(query)
-	if hit:
+	while true:
+		var query := PhysicsRayQueryParameters2D.create(global_position, next, ALL_LAYERS, _exclude)
+		var hit := get_world_2d().direct_space_state.intersect_ray(query)
+		if hit.is_empty():
+			break
+		# A target that dodges gets one roll per bullet, which then flies on past it
+		# and can still hit whatever is behind.
+		if hit.collider.has_method("dodges_shot") and hit.collider.dodges_shot():
+			_exclude.append(hit.rid)
+			continue
 		if hit.collider.has_method("take_hit"):
 			hit.collider.take_hit(_damage)
 		queue_free()

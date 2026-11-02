@@ -13,6 +13,7 @@ const EXHAUSTED_COLOR := Color(0.7, 0.25, 0.2)
 @onready var _health_fill: ColorRect = $HealthBack/HealthFill
 @onready var _bandages: Label = $BandageLabel
 @onready var _status: Label = $StatusLabel
+@onready var _stance: Label = $StanceLabel
 
 
 func _ready() -> void:
@@ -26,6 +27,7 @@ func _process(_delta: float) -> void:
 	_fill.color = EXHAUSTED_COLOR if soldier.exhausted else STAMINA_COLOR
 	_health_fill.size.x = _health_back.size.x * soldier.health / soldier.health_max
 	_bandages.text = "Bandaging" if soldier.bandaging else "Bandages %d" % soldier.bandages
+	_stance.text = "Crouched" if soldier.crouching else ""
 	_status.text = "" if soldier.alive else "You died. Respawning in %d" % ceili(soldier.respawn_left)
 	var weapon: Node = soldier.weapon
 	if weapon.reloading:

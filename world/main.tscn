@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" path="res://world/soldier/soldier.tscn" id="1_soldier"]
 [ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://world/structures/dummy.tscn" id="3_dummy"]
 [ext_resource type="PackedScene" path="res://world/structures/firing_dummy.tscn" id="4_firing_dummy"]
+[ext_resource type="PackedScene" path="res://world/structures/wall.tscn" id="5_wall"]
 
 [node name="Main" type="Node2D"]
 
@@ -22,6 +23,18 @@ position = Vector2(1080, 420)
 
 [node name="DummyWest" parent="." instance=ExtResource("3_dummy")]
 position = Vector2(260, 300)
+
+[node name="WallNorth" parent="." instance=ExtResource("5_wall")]
+position = Vector2(800, 270)
+size = Vector2(20, 140)
+
+[node name="WallSouthEast" parent="." instance=ExtResource("5_wall")]
+position = Vector2(1000, 560)
+size = Vector2(160, 20)
+
+[node name="WallSouthWest" parent="." instance=ExtResource("5_wall")]
+position = Vector2(420, 460)
+size = Vector2(120, 20)
 
 [node name="Hud" parent="." node_paths=PackedStringArray("soldier") instance=ExtResource("2_hud")]
 soldier = NodePath("../Soldier")

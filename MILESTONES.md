@@ -11,7 +11,7 @@ Each item = roughly one Claude Code session. Each **M** ends playable. Check ite
 - [x] Twin-stick move/aim, sprint + stamina
 - [x] Rifle: fire, reload, magazine, bullet travel + hit
 - [x] Health, bandage, death + respawn at a spawn point
-- [ ] Static cover: bullets stop on walls; crouch lowers hit chance
+- [x] Static cover: bullets stop on walls; crouch lowers hit chance
 - [ ] Dummy targets + gun sound
 
 ## M2 — Sim layer exists  (playable: watch the war on a map screen)

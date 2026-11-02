@@ -8,6 +8,7 @@ const COLOR := Color(0.85, 0.55, 0.25)
 const FACING_COLOR := Color(0.95, 0.9, 0.75)
 const HURT_COLOR := Color(0.9, 0.2, 0.15)
 const HURT_FLASH_TIME := 0.12
+const CROUCH_DRAW_SCALE := 0.7
 
 var stamina: float
 var stamina_max: float
@@ -20,6 +21,7 @@ var bandages: int
 var bandaging := false
 var alive := true
 var respawn_left := 0.0
+var crouching := false
 
 @onready var weapon: Node = $Weapon
 @onready var _collision: CollisionShape2D = $Collision
@@ -30,6 +32,8 @@ var _bandage_heal: float
 var _bandage_left := 0.0
 var _respawn_delay: float
 var _hurt_flash_left := 0.0
+var _crouch_speed: float
+var _crouch_hit_chance: float
 var _walk_speed: float
 var _sprint_speed: float
 var _acceleration: float
@@ -45,6 +49,8 @@ func _ready() -> void:
 	var stats: Dictionary = (load(STATS_PATH) as JSON).data
 	_walk_speed = stats.walk_speed
 	_sprint_speed = stats.sprint_speed
+	_crouch_speed = stats.crouch_speed
+	_crouch_hit_chance = stats.crouch_hit_chance
 	_acceleration = stats.acceleration
 	stamina_max = stats.stamina_max
 	_stamina_drain = stats.stamina_drain_per_sec
@@ -88,9 +94,13 @@ func _physics_process(delta: float) -> void:
 		weapon.reload()
 	var move := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	_update_bandage(delta, firing or reloading or move != Vector2.ZERO)
+	if Input.is_action_just_pressed("crouch"):
+		_set_crouching(not crouching)
 	var sprinting := Input.is_action_pressed("sprint") and move != Vector2.ZERO and not exhausted
-	var target := move * (_sprint_speed if sprinting else _walk_speed)
-	velocity = velocity.move_toward(target, _acceleration * delta)
+	if sprinting:
+		_set_crouching(false)
+	var speed := _sprint_speed if sprinting else _crouch_speed if crouching else _walk_speed
+	velocity = velocity.move_toward(move * speed, _acceleration * delta)
 	move_and_slide()
 	# No camera yet, so stay on screen.
 	var margin := Vector2.ONE * RADIUS
@@ -141,6 +151,18 @@ func _update_bandage(delta: float, busy: bool) -> void:
 			health = minf(health + _bandage_heal, health_max)
 
 
+func _set_crouching(value: bool) -> void:
+	if crouching != value:
+		crouching = value
+		queue_redraw()
+
+
+# Asked by a bullet about to hit. From above, crouching can't be a smaller target
+# by height, so it's a chance for each bullet to pass overhead.
+func dodges_shot() -> bool:
+	return crouching and randf() >= _crouch_hit_chance
+
+
 func take_hit(damage: float) -> void:
 	if not alive:
 		return
@@ -170,9 +192,11 @@ func _respawn() -> void:
 	exhausted = false
 	_regen_wait = 0.0
 	bandages = _bandages_carried
+	_set_crouching(false)
 	weapon.refill()
 
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, RADIUS, HURT_COLOR if _hurt_flash_left > 0.0 else COLOR)
+	var radius := RADIUS * CROUCH_DRAW_SCALE if crouching else RADIUS
+	draw_circle(Vector2.ZERO, radius, HURT_COLOR if _hurt_flash_left > 0.0 else COLOR)
 	draw_line(Vector2.ZERO, Vector2(RADIUS + 8.0, 0.0), FACING_COLOR, 3.0)
