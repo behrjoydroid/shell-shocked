@@ -3,7 +3,7 @@
 Each item = roughly one Claude Code session. Each **M** ends playable. Check items off as you go.
 
 ## M0 — Repo & skeleton
-- [ ] `git init`, GitHub remote, first commit of these three docs
+- [x] `git init`, GitHub remote, first commit of these three docs
 - [ ] Godot project, main scene, placeholder player circle that moves
 - [ ] `tests/run.gd` headless runner that passes an empty test
 
