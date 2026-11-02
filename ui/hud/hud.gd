@@ -1,4 +1,4 @@
-# Placeholder HUD: just a stamina bar for now.
+# Placeholder HUD: a stamina bar and an ammo count.
 extends CanvasLayer
 
 const STAMINA_COLOR := Color(0.75, 0.7, 0.4)
@@ -8,6 +8,7 @@ const EXHAUSTED_COLOR := Color(0.7, 0.25, 0.2)
 
 @onready var _back: ColorRect = $StaminaBack
 @onready var _fill: ColorRect = $StaminaBack/StaminaFill
+@onready var _ammo: Label = $AmmoLabel
 
 
 func _ready() -> void:
@@ -19,3 +20,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_fill.size.x = _back.size.x * soldier.stamina / soldier.stamina_max
 	_fill.color = EXHAUSTED_COLOR if soldier.exhausted else STAMINA_COLOR
+	var weapon: Node = soldier.weapon
+	if weapon.reloading:
+		_ammo.text = "Reloading"
+	elif weapon.ammo == 0:
+		_ammo.text = "Empty, press R"
+	else:
+		_ammo.text = "%d / %d" % [weapon.ammo, weapon.magazine_size]

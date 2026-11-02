@@ -1,0 +1,10 @@
+{
+	"rifle": {
+		"magazine": 10,
+		"shot_interval": 0.45,
+		"reload_time": 2.2,
+		"damage": 34.0,
+		"bullet_speed": 1600.0,
+		"bullet_range": 1000.0
+	}
+}

@@ -9,7 +9,7 @@ Each item = roughly one Claude Code session. Each **M** ends playable. Check ite
 
 ## M1 — Soldier feels good  (playable: shooting range)
 - [x] Twin-stick move/aim, sprint + stamina
-- [ ] Rifle: fire, reload, magazine, bullet travel + hit
+- [x] Rifle: fire, reload, magazine, bullet travel + hit
 - [ ] Health, bandage, death + respawn at a spawn point
 - [ ] Static cover: bullets stop on walls; crouch lowers hit chance
 - [ ] Dummy targets + gun sound

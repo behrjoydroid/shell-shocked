@@ -13,6 +13,8 @@ var stamina_max: float
 # holding sprint at empty would flicker between sprinting and walking every frame.
 var exhausted := false
 
+@onready var weapon: Node = $Weapon
+
 var _walk_speed: float
 var _sprint_speed: float
 var _acceleration: float
@@ -44,6 +46,10 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	_update_aim()
+	if Input.is_action_just_pressed("fire"):
+		weapon.fire()
+	if Input.is_action_just_pressed("reload"):
+		weapon.reload()
 	var move := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var sprinting := Input.is_action_pressed("sprint") and move != Vector2.ZERO and not exhausted
 	var target := move * (_sprint_speed if sprinting else _walk_speed)
