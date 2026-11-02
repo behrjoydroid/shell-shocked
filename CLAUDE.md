@@ -23,10 +23,10 @@ Read DESIGN.md before any feature work. Read MILESTONES.md to see what's next.
 ## Layout
 ```
 project.godot
-sim/            region.gd, town.gd, stockpile.gd, squad.gd, logi.gd, commander.gd, orders.gd, resolver.gd, sim_clock.gd
+sim/            war.gd, region.gd, town.gd, stockpile.gd, squad.gd, logi.gd, commander.gd, orders.gd, resolver.gd, sim_clock.gd
 world/          main.tscn, soldier/, vehicles/, structures/, bullets/, bubble_spawner.gd, sim_bridge.gd
 ui/             hud/, map/, orders_panel/, rank_panel/, command_view/ (Lieutenant+)
-data/           region_westfront.json, items.json, weapons.json, ranks.json, soldier.json, dummy.json
+data/           region_westfront.json, sim.json, items.json, weapons.json, ranks.json, soldier.json, dummy.json
 tests/          run.gd + one file per sim class
 assets/         placeholder/ first, real art later
 DESIGN.md  MILESTONES.md  LOG.md  CLAUDE.md

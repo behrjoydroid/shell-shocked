@@ -58,11 +58,12 @@ func _run_file(file_name: String, error_log: ErrorLog) -> void:
 		if not method_name.begins_with("test_"):
 			continue
 		ran += 1
+		var started := Time.get_ticks_msec()
 		test_case.call(method_name)
 		var errors := error_log.take()
 		if errors.is_empty():
 			_passed += 1
-			print("PASS %s::%s" % [file_name, method_name])
+			print("PASS %s::%s (%d ms)" % [file_name, method_name, Time.get_ticks_msec() - started])
 		else:
 			_fail("%s::%s" % [file_name, method_name], errors)
 	if ran == 0:

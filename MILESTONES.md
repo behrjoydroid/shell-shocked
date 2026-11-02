@@ -20,7 +20,7 @@ Each item = roughly one Claude Code session. Each **M** ends playable. Check ite
 - [x] `resolver.gd` abstract combat (supply + fortification weighted)
 - [x] `sim_clock.gd` with 1x / 4x / 16x speed
 - [ ] Map UI: towns colored by owner, squads as dots, stock numbers
-- [ ] Headless test: two squads fight, one wins, stock never negative
+- [x] Headless test: two squads fight, one wins, stock never negative
 
 ## M3 — Bubble: sim meets world  (playable: fight in a real battle)
 - [ ] `bubble_spawner.gd`: sim squads within 400 m become real AI soldiers
