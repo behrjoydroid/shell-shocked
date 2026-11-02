@@ -3,9 +3,10 @@
 Read DESIGN.md before any feature work. Read MILESTONES.md to see what's next.
 
 ## Stack
-- Godot 4.3+, GDScript only. 2D, top-down.
+- Godot 4.5+, GDScript only. 2D, top-down.
 - Scenes are text (.tscn) — edit them directly, keep them small.
 - Run headless tests with `godot --headless -s tests/run.gd` (sim layer only, no scenes).
+- On Joey's PC `godot` isn't on PATH. From the project root, use `"/c/Program Files (x86)/Steam/steamapps/common/Godot Engine/godot.windows.opt.tools.64.exe"` (4.7.2) in place of `godot`. The test runner needs 4.5+ for `OS.add_logger`.
 
 ## Safety rules (non-negotiable)
 1. **Commit before any refactor, deletion, or file move.** `git add -A && git commit -m "pre-refactor: <what>"`. Never run `rm` on project files without a commit first.
