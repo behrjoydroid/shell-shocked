@@ -57,3 +57,9 @@ func reload() -> void:
 		return
 	reloading = true
 	_reload_left = _reload_time
+
+
+func refill() -> void:
+	ammo = magazine_size
+	reloading = false
+	_cooldown = 0.0

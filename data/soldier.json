@@ -6,5 +6,10 @@
 	"stamina_drain_per_sec": 20.0,
 	"stamina_regen_per_sec": 14.0,
 	"stamina_regen_delay": 0.8,
-	"stamina_recover_at": 25.0
+	"stamina_recover_at": 25.0,
+	"health_max": 100.0,
+	"bandages": 3,
+	"bandage_time": 3.0,
+	"bandage_heal": 40.0,
+	"respawn_delay": 5.0
 }
