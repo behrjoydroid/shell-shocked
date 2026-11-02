@@ -12,5 +12,5 @@ script = ExtResource("1_firing_dummy")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_body")
 
-[node name="Weapon" type="Node" parent="."]
+[node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("2_weapon")

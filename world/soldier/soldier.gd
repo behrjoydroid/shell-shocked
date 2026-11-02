@@ -176,6 +176,7 @@ func take_hit(damage: float) -> void:
 func _die() -> void:
 	alive = false
 	bandaging = false
+	weapon.reloading = false
 	respawn_left = _respawn_delay
 	velocity = Vector2.ZERO
 	visible = false

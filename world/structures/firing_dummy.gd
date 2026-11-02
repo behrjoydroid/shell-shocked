@@ -5,15 +5,21 @@ extends "res://world/structures/dummy.gd"
 const FACING_COLOR := Color(0.2, 0.25, 0.32)
 
 @export var target: Node2D
-@export var fire_interval := 2.0
+
+var fire_interval: float
 
 var _shot_wait := 0.0
 
 @onready var _weapon: Node = $Weapon
 
 
+func _ready() -> void:
+	super()
+	fire_interval = (load(STATS_PATH) as JSON).data.fire_interval
+
+
 func _physics_process(delta: float) -> void:
-	if not target.alive:
+	if not standing or not target.alive:
 		return
 	rotation = (target.global_position - global_position).angle()
 	_shot_wait -= delta
@@ -26,4 +32,5 @@ func _physics_process(delta: float) -> void:
 
 func _draw() -> void:
 	super()
-	draw_line(Vector2.ZERO, Vector2(RADIUS + 8.0, 0.0), FACING_COLOR, 4.0)
+	if standing:
+		draw_line(Vector2.ZERO, Vector2(RADIUS + 8.0, 0.0), FACING_COLOR, 4.0)
